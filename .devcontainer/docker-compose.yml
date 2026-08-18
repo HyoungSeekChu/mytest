@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  app:
+    image: mcr.microsoft.com/devcontainers/python:3.13
+
+    volumes:
+      - ..:/workspaces/${localWorkspaceFolderBasename}
+
+    command: sleep infinity
+
+  mysql:
+    image: mysql:8
+
+    restart: unless-stopped
+
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: sampledb
+
+    ports:
+      - "3306:3306"
